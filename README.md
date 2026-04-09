@@ -1,2 +1,0 @@
-# shosafe.com
-ShoSafe.com

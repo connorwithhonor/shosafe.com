@@ -1,1 +1,941 @@
-{"id":"/index.html","path":"/index.html","sha":"cc216cfc929cbd571ff5f5eb336696ac18d29d39","mime_type":"text/html","size":25103,"site_id":"474ddcdb-f8c7-4f4b-bf00-77766778a520","deploy_id":"69bc8ef9f7cb8c00fd2340f1"}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShoSafe — Because Every Agent Deserves to Come Home</title>
+<meta name="description" content="ShoSafe is the real estate showing safety platform built by a 23-year law enforcement veteran (LAPD) and 27-year real estate professional. Protecting agents and clients during every showing. Coming soon.">
+<meta name="keywords" content="real estate agent safety, showing safety app, realtor protection, real estate safety app, agent safety platform, ShoSafe, Santa Clarita real estate, LAPD, property showing safety">
+<meta property="og:title" content="ShoSafe — Because Every Agent Deserves to Come Home">
+<meta property="og:description" content="The showing safety platform built by someone who actually walked through those doors. Former LAPD. 27+ years in real estate. Coming soon.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shosafe.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deep: #0a0c10;
+  --bg-card: #11141b;
+  --bg-elevated: #181c26;
+  --border-subtle: rgba(255,255,255,0.06);
+  --amber: #e8a023;
+  --amber-glow: rgba(232,160,35,0.15);
+  --amber-bright: #f5b942;
+  --blue-steel: #4a7c9b;
+  --blue-glow: rgba(74,124,155,0.12);
+  --red-alert: #c0392b;
+  --red-glow: rgba(192,57,43,0.2);
+  --text-primary: #e8e6e1;
+  --text-secondary: rgba(232,230,225,0.55);
+  --text-muted: rgba(232,230,225,0.3);
+  --serif: 'Source Serif 4', Georgia, serif;
+  --sans: 'Outfit', system-ui, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============ AMBIENT BACKGROUND ============ */
+.ambient-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 800px 600px at 20% 20%, rgba(74,124,155,0.04), transparent),
+    radial-gradient(ellipse 600px 500px at 80% 70%, rgba(232,160,35,0.03), transparent);
+}
+
+.scan-line {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--amber), transparent);
+  opacity: 0.08;
+  z-index: 1;
+  pointer-events: none;
+  animation: scanDown 8s linear infinite;
+}
+
+@keyframes scanDown {
+  0% { transform: translateY(-2px); }
+  100% { transform: translateY(100vh); }
+}
+
+/* ============ LAYOUT ============ */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ============ NAV ============ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px 0;
+  backdrop-filter: blur(20px);
+  background: rgba(10,12,16,0.8);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: padding 0.3s ease;
+}
+
+nav.scrolled { padding: 12px 0; }
+
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo-shield {
+  width: 36px;
+  height: 36px;
+  position: relative;
+}
+
+.logo-shield svg {
+  width: 100%;
+  height: 100%;
+}
+
+.logo-text {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 1.4rem;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.logo-text span {
+  color: var(--amber);
+}
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: var(--amber);
+  color: var(--bg-deep);
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.nav-cta:hover {
+  background: var(--amber-bright);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px var(--amber-glow);
+}
+
+/* ============ HERO ============ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 140px 0 100px;
+  position: relative;
+}
+
+.hero-content {
+  max-width: 780px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: var(--red-glow);
+  border: 1px solid rgba(192,57,43,0.25);
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #e74c3c;
+  margin-bottom: 32px;
+  animation: fadeInUp 0.8s ease both;
+}
+
+.hero-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #e74c3c;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.hero h1 {
+  font-family: var(--sans);
+  font-weight: 900;
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 28px;
+  animation: fadeInUp 0.8s ease 0.1s both;
+}
+
+.hero h1 .line-amber {
+  color: var(--amber);
+}
+
+.hero-sub {
+  font-family: var(--serif);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  line-height: 1.65;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin-bottom: 44px;
+  animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.8s ease 0.3s both;
+}
+
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hero-stat-num {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 2.2rem;
+  letter-spacing: -0.02em;
+  color: var(--amber);
+}
+
+.hero-stat-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+/* ============ DIVIDER ============ */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-subtle), var(--amber-glow), var(--border-subtle), transparent);
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+/* ============ REALITY SECTION ============ */
+.reality {
+  padding: 120px 0;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--amber);
+  margin-bottom: 24px;
+}
+
+.section-label::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--amber);
+}
+
+.reality h2 {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+  max-width: 700px;
+}
+
+.reality-lead {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 640px;
+  margin-bottom: 60px;
+}
+
+.reality-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.reality-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 36px 32px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.reality-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--amber), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.reality-card:hover {
+  border-color: rgba(232,160,35,0.15);
+  transform: translateY(-2px);
+}
+
+.reality-card:hover::before { opacity: 1; }
+
+.card-stat {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 2.8rem;
+  letter-spacing: -0.02em;
+  color: var(--amber);
+  margin-bottom: 12px;
+}
+
+.card-title {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.card-desc {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* ============ ORIGIN SECTION ============ */
+.origin {
+  padding: 120px 0;
+}
+
+.origin-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.origin-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  background: var(--blue-glow);
+  border: 1px solid rgba(74,124,155,0.2);
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--blue-steel);
+  margin-bottom: 24px;
+}
+
+.origin h2 {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 28px;
+}
+
+.origin-text {
+  font-family: var(--serif);
+  font-size: 1.08rem;
+  line-height: 1.75;
+  color: var(--text-secondary);
+}
+
+.origin-text p + p { margin-top: 20px; }
+
+.origin-text strong { color: var(--text-primary); font-weight: 600; }
+
+.credential-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.credential {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.credential:hover {
+  border-color: rgba(232,160,35,0.12);
+}
+
+.credential-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1.3rem;
+}
+
+.credential-icon.badge-icon { background: var(--red-glow); }
+.credential-icon.home-icon { background: var(--amber-glow); }
+.credential-icon.shield-icon { background: var(--blue-glow); }
+
+.credential-info h4 {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+
+.credential-info p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* ============ PROMISE SECTION ============ */
+.promise {
+  padding: 120px 0;
+  text-align: center;
+}
+
+.promise h2 {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.promise h2 span { color: var(--amber); }
+
+.promise-text {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 580px;
+  margin: 0 auto 60px;
+}
+
+.promise-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.pillar {
+  padding: 40px 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.4s ease;
+}
+
+.pillar:hover {
+  border-color: rgba(232,160,35,0.15);
+  transform: translateY(-3px);
+}
+
+.pillar-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 20px;
+  border-radius: 12px;
+  background: var(--amber-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.pillar h3 {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+}
+
+.pillar p {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* ============ CTA / WAITLIST ============ */
+.waitlist {
+  padding: 120px 0 140px;
+  text-align: center;
+}
+
+.waitlist-box {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 60px 48px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.waitlist-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--amber), var(--blue-steel), var(--amber));
+}
+
+.waitlist h2 {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 1.8rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.waitlist-sub {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 36px;
+  line-height: 1.6;
+}
+
+.waitlist-form {
+  display: flex;
+  gap: 10px;
+  max-width: 460px;
+  margin: 0 auto 16px;
+}
+
+.waitlist-form input {
+  flex: 1;
+  padding: 14px 18px;
+  background: var(--bg-deep);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.waitlist-form input::placeholder { color: var(--text-muted); }
+.waitlist-form input:focus { border-color: var(--amber); }
+
+.waitlist-form button {
+  padding: 14px 28px;
+  background: var(--amber);
+  color: var(--bg-deep);
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.waitlist-form button:hover {
+  background: var(--amber-bright);
+  box-shadow: 0 4px 20px var(--amber-glow);
+}
+
+.waitlist-note {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.form-success {
+  display: none;
+  padding: 20px;
+  text-align: center;
+}
+
+.form-success h3 {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--amber);
+  margin-bottom: 8px;
+}
+
+.form-success p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+/* ============ FOOTER ============ */
+footer {
+  padding: 40px 0;
+  border-top: 1px solid var(--border-subtle);
+  text-align: center;
+}
+
+footer p {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+footer a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer a:hover { color: var(--amber); }
+
+/* ============ ANIMATIONS ============ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+  .origin-layout {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .promise-pillars {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+
+  .hero-stats { gap: 24px; }
+
+  .waitlist-form {
+    flex-direction: column;
+  }
+
+  .waitlist-box { padding: 40px 28px; }
+
+  .reality-grid { grid-template-columns: 1fr; }
+
+  .nav-cta span { display: none; }
+}
+</style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png"><meta property="og:image" content="https://shosafe.com/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://shosafe.com/og-image.png"></head>
+<body>
+
+<div class="ambient-grid"></div>
+<div class="scan-line"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container">
+    <a href="#" class="nav-logo">
+      <div class="logo-shield">
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 2L4 9V17C4 25.84 9.84 33.48 18 35C26.16 33.48 32 25.84 32 17V9L18 2Z" fill="none" stroke="#e8a023" stroke-width="2"/>
+          <path d="M18 8L10 12V17C10 22.52 13.28 27.74 18 29C22.72 27.74 26 22.52 26 17V12L18 8Z" fill="rgba(232,160,35,0.12)" stroke="#e8a023" stroke-width="1.5"/>
+          <circle cx="18" cy="17" r="3" fill="#e8a023"/>
+        </svg>
+      </div>
+      <div class="logo-text">Sho<span>Safe</span></div>
+    </a>
+    <a href="#waitlist" class="nav-cta"><span>Request</span> Early Access</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">Agent Safety Crisis</div>
+      <h1>Every door<br>you open<br>is a <span class="line-amber">risk.</span></h1>
+      <p class="hero-sub">You walk into vacant properties with strangers. You host open houses alone. You trust that the person on the other side of that lockbox is who they say they are. It's time for a system that has your back when nobody else does.</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">1 in 3</div>
+          <div class="hero-stat-label">Female agents felt unsafe at an open house</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">40%</div>
+          <div class="hero-stat-label">Of all agents faced a safety threat</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">0</div>
+          <div class="hero-stat-label">Current tools built by someone who&rsquo;s been through that door</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- REALITY -->
+<section class="reality">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">The Unspoken Truth</div>
+      <h2>The industry talks about safety.<br>Nobody has actually solved it.</h2>
+      <p class="reality-lead">There are panic buttons. There are timers. There are apps that text your spouse if you don't check in. But none of them are built into the way you actually work. So you forget to open them. You skip the step. And you walk in unprotected.</p>
+    </div>
+    <div class="reality-grid reveal">
+      <div class="reality-card">
+        <div class="card-stat">65%</div>
+        <div class="card-title">Meet strangers at properties as their first face-to-face</div>
+        <div class="card-desc">No verification. No documentation. No safety protocol. Just a handshake at the front door of an empty house.</div>
+      </div>
+      <div class="reality-card">
+        <div class="card-stat">39%</div>
+        <div class="card-title">Hosted an open house completely alone last year</div>
+        <div class="card-desc">Broadcasting your exact location on social media, then standing alone in a house while anyone walks in off the street.</div>
+      </div>
+      <div class="reality-card">
+        <div class="card-stat">22%</div>
+        <div class="card-title">Experienced a situation that made them feel genuinely unsafe</div>
+        <div class="card-desc">Not hypothetical. Not a drill. Real agents in real danger with no system to fall back on.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ORIGIN -->
+<section class="origin">
+  <div class="container">
+    <div class="origin-layout">
+      <div class="reveal">
+        <div class="origin-badge">&#x1F6E1; Why This Exists</div>
+        <h2>Built by someone who walked through those doors first.</h2>
+        <div class="origin-text">
+          <p>Before real estate, there were cages. Three years as a corrections officer in New Mexico. Then <strong>LAPD, sworn October 9, 1990.</strong> Twenty-three years total in law enforcement — walking up to vehicles not knowing what was inside. Clearing houses where the call said someone might still be in there. Motor officer. Firearms instructor. Drug Recognition Expert instructor certified by the International Association of Chiefs of Police. The kind of career where the only thing between you and a worst-case scenario was training and instinct.</p>
+          <p>Then 27 years in Santa Clarita Valley real estate. Thousands of showings. Doors opened into empty homes, foreclosures, properties where you didn't know who was still inside or who was watching.</p>
+          <p><strong>ShoSafe didn't come from a tech incubator.</strong> It came from someone who knows what it feels like to walk through a door and wonder if you're walking out. This is protection designed by a protector.</p>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="credential-stack">
+          <div class="credential">
+            <div class="credential-icon badge-icon">&#x1F6E1;</div>
+            <div class="credential-info">
+              <h4>23 Years Law Enforcement</h4>
+              <p>LAPD. Motor officer. DRE instructor. Firearms instructor. RADAR/LASER certified. POST-certified training developer.</p>
+            </div>
+          </div>
+          <div class="credential">
+            <div class="credential-icon home-icon">&#x1F3E0;</div>
+            <div class="credential-info">
+              <h4>27+ Years Real Estate</h4>
+              <p>Santa Clarita Valley. Thousands of showings. Every type of property. Every scenario.</p>
+            </div>
+          </div>
+          <div class="credential">
+            <div class="credential-icon shield-icon">&#x2699;</div>
+            <div class="credential-info">
+              <h4>AI Systems Architect</h4>
+              <p>1,000+ brokers and agents trained in AI. Building the tools nobody else will.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 40px; padding: 28px 24px; background: var(--bg-elevated); border-left: 3px solid var(--amber); border-radius: 0 10px 10px 0;">
+          <p style="font-family: var(--serif); font-style: italic; font-size: 1.05rem; line-height: 1.6; color: var(--text-secondary);">"The existing safety apps were built by people who Googled 'realtor safety.' ShoSafe is built by someone who cleared houses for a living."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PROMISE -->
+<section class="promise">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label" style="justify-content: center;">What's Coming</div>
+      <h2>Not another panic button.<br>A <span>complete showing safety system.</span></h2>
+      <p class="promise-text">ShoSafe is being built to protect agents and clients from the moment a showing is scheduled to the moment everyone gets home safe. It's not a feature bolted onto something else. It's the foundation.</p>
+    </div>
+    <div class="promise-pillars reveal">
+      <div class="pillar">
+        <div class="pillar-icon">&#x1F6E1;</div>
+        <h3>Protect</h3>
+        <p>Intelligent safety protocols woven into your actual showing workflow, not a separate app you forget to open.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">&#x1F4CD;</div>
+        <h3>Track</h3>
+        <p>Real-time awareness that keeps the right people informed without making your client feel like a suspect.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">&#x1F91D;</div>
+        <h3>Empower</h3>
+        <p>Safety for both sides of the transaction. Because the agent showing the home and the client walking into it both deserve protection.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- WAITLIST -->
+<section class="waitlist" id="waitlist">
+  <div class="container">
+    <div class="waitlist-box reveal">
+      <h2>Get Early Access</h2>
+      <p class="waitlist-sub">ShoSafe is in active development. Join the waitlist to be first in line when we launch, and help shape the platform agents actually need.</p>
+      <form class="waitlist-form" id="waitlistForm" action="https://formspree.io/f/xplaceholder" method="POST">
+        <input type="email" name="email" placeholder="Your email address" required>
+        <input type="hidden" name="_subject" value="ShoSafe Early Access Request">
+        <input type="hidden" name="source" value="shosafe.com">
+        <button type="submit">Join Waitlist</button>
+      </form>
+      <p class="waitlist-note">No spam. No sharing. Just early access when it's ready.</p>
+      <div class="form-success" id="formSuccess">
+        <h3>You're on the list.</h3>
+        <p>We'll be in touch when ShoSafe is ready for early access.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>&copy; 2026 ShoSafe. All rights reserved.<br>
+    <a href="https://honorelevate.com" target="_blank" rel="noopener">Coded by Connor with Honor | AI Growth Architect</a></p>
+  </div>
+</footer>
+
+<script>
+// Nav scroll behavior
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+reveals.forEach(el => observer.observe(el));
+
+// Form handling
+const form = document.getElementById('waitlistForm');
+const successMsg = document.getElementById('formSuccess');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const data = new FormData(form);
+
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (res.ok) {
+      form.style.display = 'none';
+      document.querySelector('.waitlist-note').style.display = 'none';
+      successMsg.style.display = 'block';
+    }
+  } catch (err) {
+    // Fallback: try mailto
+    window.location.href = 'mailto:connor@shosafe.com?subject=ShoSafe Early Access&body=I want early access to ShoSafe.';
+  }
+});
+</script>
+
+</body>
+</html>
