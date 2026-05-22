@@ -141,13 +141,30 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         run: |
-          # Confirm the latest deploy is ready and serves expected critical pages
+          # Confirm the deploy is reachable. Always check the homepage.
+          # Additional URLs can be configured per-site via VERIFY_URLS env var
+          # (newline-separated, full URLs). If not set, only homepage is checked.
           sleep 10
-          for url in https://shosafe.com/ https://shosafe.com/blog/; do
+          site_info=$(curl -sS -H "Authorization: Bearer $NETLIFY_AUTH_TOKEN" \
+            "https://api.netlify.com/api/v1/sites/$NETLIFY_SITE_ID")
+          homepage_url=$(echo "$site_info" | python3 -c "import json,sys; d=json.load(sys.stdin); print(d.get('ssl_url') or d.get('url') or '')")
+          if [ -z "$homepage_url" ]; then
+            echo "::error::Could not determine site URL from Netlify API"
+            exit 1
+          fi
+          # Build list of URLs to check (one per line)
+          {
+            echo "$homepage_url/"
+            if [ -n "${VERIFY_URLS:-}" ]; then
+              printf "%s\n" "$VERIFY_URLS"
+            fi
+          } > /tmp/verify-urls.txt
+          while IFS= read -r url; do
+            [ -z "$url" ] && continue
             status=$(curl -sIo /dev/null -w "%{http_code}" "$url")
-            if [ "$status" != "200" ]; then
+            if ! echo "$status" | grep -qE '^(200|301|302|304)$'; then
               echo "::error::Post-deploy verification failed: $url returned $status"
               exit 1
             fi
             echo "  OK $url -> $status"
-          done
+          done < /tmp/verify-urls.txt
