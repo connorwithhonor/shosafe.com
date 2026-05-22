@@ -85,11 +85,20 @@ jobs:
             fi
           fi
 
-          # Critical files must always be present
-          for required in /index.html /blog/index.html /sitemap.xml /robots.txt; do
-            if ! grep -qx "$required" new-manifest.txt; then
-              echo "::error::Required file missing from deploy: $required"
-              exit 1
+          # Critical files: /index.html is always required (no homepage = broken site).
+          # Other "expected" files (blog/index.html, sitemap.xml, robots.txt) are required
+          # ONLY if they're already in the live deploy — we never silently drop them.
+          if ! grep -qx "/index.html" new-manifest.txt; then
+            echo "::error::Required file missing from deploy: /index.html (no homepage)"
+            exit 1
+          fi
+          for soft_required in /blog/index.html /sitemap.xml /robots.txt; do
+            if grep -qx "$soft_required" live-manifest.txt && ! grep -qx "$soft_required" new-manifest.txt; then
+              commit_msg=$(git log -1 --pretty=%B)
+              if ! echo "$commit_msg" | grep -qi "^remove:"; then
+                echo "::error::Live has $soft_required but new deploy does not. Commit must start with 'remove:' to authorize dropping it."
+                exit 1
+              fi
             fi
           done
 
