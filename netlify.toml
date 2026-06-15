@@ -5,6 +5,12 @@
 [build]
   publish = "."
 
+# Serverless functions (waitlist -> HonorElevate CRM).
+# The PIT + locationId are Netlify env vars, never in git, never in the page.
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
 # Disable HTML post-processing so we never inject favicon/meta tags multiple times
 # (Previous manual-deploy sessions injected duplicate favicon blocks; auto-deploy from
 # git should never modify the source HTML at build time.)

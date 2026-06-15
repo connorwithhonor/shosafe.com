@@ -192,6 +192,7 @@ jobs:
           README.md
           .github/
           scripts/
+          netlify/
           EOF
           # --no-build: skip Netlify's site-level build commands. We're deploying
           # the repo contents as-is. Any build a site needs should be done in CI
