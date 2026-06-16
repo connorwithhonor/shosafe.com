@@ -164,10 +164,31 @@ nav .container {
   align-items: center;
   padding: 140px 0 100px;
   position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url('/hero-agent.webp') no-repeat center center;
+  background-size: cover;
+  pointer-events: none;
+}
+
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, var(--bg-deep) 0%, var(--bg-deep) 30%, rgba(10,12,16,0.55) 62%, rgba(10,12,16,0.1) 100%),
+    linear-gradient(180deg, rgba(10,12,16,0.45) 0%, transparent 22%, transparent 68%, var(--bg-deep) 100%);
 }
 
 .hero-content {
   max-width: 820px;
+  position: relative;
+  z-index: 2;
 }
 
 .hero-badge {
@@ -1126,6 +1147,14 @@ footer a:hover { color: var(--amber); }
   .hero-actions { flex-direction: column; align-items: stretch; }
   .btn-primary, .btn-ghost { justify-content: center; }
 
+  /* On phones the figure sits as a faint backdrop so the text stays the focus */
+  .hero-bg { background-size: cover; opacity: 0.5; }
+  .hero-bg::after {
+    background:
+      linear-gradient(90deg, var(--bg-deep) 0%, rgba(10,12,16,0.8) 55%, rgba(10,12,16,0.35) 100%),
+      linear-gradient(180deg, var(--bg-deep) 0%, transparent 30%, transparent 55%, var(--bg-deep) 100%);
+  }
+
   .waitlist-form .row { flex-direction: column; }
   .waitlist-box { padding: 40px 28px; }
   .reality-grid { grid-template-columns: 1fr; }
@@ -1157,6 +1186,7 @@ footer a:hover { color: var(--amber); }
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-bg" role="img" aria-label="A real estate agent walking up to a dark, empty home at dusk, checking her phone."></div>
   <div class="container">
     <div class="hero-content">
       <div class="hero-badge">Agent Safety Crisis</div>
